@@ -1,0 +1,46 @@
+actor,message,tool_call,timestamp
+user,¿Qué productos tenemos en el inventario?,,2026-10-13T11:30:11.805739+00:00
+agent,"{"""":{}}",consultar_inventario,2026-10-13T11:30:12.969314+00:00
+tool,"[{""id"": ""1"", ""name"": ""Leche de avena"", ""quantity"": ""18.0"", ""unit"": ""unidades""}, {""id"": ""2"", ""name"": ""Leche de avena"", ""quantity"": ""30.0"", ""unit"": ""unidades""}]",consultar_inventario,2026-10-13T11:30:13.001773+00:00
+agent,"En el inventario tenemos los siguientes productos:
+
+| ID | Nombre        | Cantidad | Unidad   |
+|----|---------------|----------|----------|
+| 1  | Leche de avena | 18.0     | unidades |
+| 2  | Leche de avena | 30.0     | unidades |
+
+Si necesitas consultar o actualizar alguno de ellos, indícame el ID correspondiente.",,2026-10-13T11:30:14.079286+00:00
+user,¿Qué productos tienen menos de 20 unidades?,,2026-10-13T11:31:24.448647+00:00
+agent,"{""threshold"":20}",consultar_alertas,2026-10-13T11:31:24.915728+00:00
+tool,"[{""id"": ""1"", ""name"": ""Leche de avena"", ""quantity"": ""18.0"", ""unit"": ""unidades""}]",consultar_alertas,2026-10-13T11:31:24.919273+00:00
+agent,"Los productos con stock inferior a 20 unidades son:
+
+| ID | Nombre        | Cantidad | Unidad |
+|----|---------------|----------|--------|
+| 1  | Leche de avena | 18.0     | unidades |
+
+¿Deseas registrar alguna entrega, venta o actualización de este producto?",,2026-10-13T11:31:25.390696+00:00
+user,Añade un producto nuevo llamado Café arábica con 15 bolsas.,,2026-10-13T11:32:18.036795+00:00
+agent,"{""name"":""Café arábica"",""quantity"":15,""unit"":""bolsas""}",agregar_producto,2026-10-13T11:32:18.518077+00:00
+tool,"{""id"": 3, ""name"": ""Café arábica"", ""quantity"": 15.0, ""unit"": ""bolsas""}",agregar_producto,2026-10-13T11:32:18.521099+00:00
+agent,"¡Producto añadido correctamente!
+
+| ID | Nombre        | Cantidad | Unidad |
+|----|---------------|----------|--------|
+| 3  | Café arábica   | 15.0     | bolsas |
+
+¿Hay algo más que quieras hacer con el inventario?",,2026-10-13T11:32:18.781879+00:00
+user,Hemos vendido 4 bolsas de café arábica. Actualiza el stock y dime cuántas quedan.,,2026-10-13T11:33:13.845862+00:00
+agent,"{""delta"":-4,""product_id"":3}",actualizar_stock,2026-10-13T11:33:14.339100+00:00
+tool,"{""id"": ""3"", ""name"": ""Café arábica"", ""quantity"": 11.0, ""unit"": ""bolsas""}",actualizar_stock,2026-10-13T11:33:14.348208+00:00
+agent,"Se ha registrado la venta.
+
+- **Producto:** Café arábica (ID 3)  
+- **Cantidad vendida:** 4 bolsas  
+- **Stock restante:** **11.0 bolsas**
+
+¿Necesitas algo más?",,2026-10-13T11:33:15.043255+00:00
+user,¿Cuántos productos tenemos en el inventario?,,2026-10-13T11:47:12.865058+00:00
+agent,{},consultar_inventario,2026-10-13T11:47:13.552563+00:00
+tool,"[{""id"": ""1"", ""name"": ""Leche de avena"", ""quantity"": ""18.0"", ""unit"": ""unidades""}, {""id"": ""2"", ""name"": ""Leche de avena"", ""quantity"": ""30.0"", ""unit"": ""unidades""}, {""id"": ""3"", ""name"": ""Café arábica"", ""quantity"": ""11.0"", ""unit"": ""bolsas""}]",consultar_inventario,2026-10-13T11:47:13.573004+00:00
+agent,En el inventario actualmente hay **3 productos** registrados (aunque dos de ellos comparten el nombre “Leche de avena”).,,2026-10-13T11:47:14.004774+00:00
